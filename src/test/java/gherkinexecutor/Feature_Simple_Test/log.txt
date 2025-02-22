@@ -1,0 +1,5 @@
+Scenario_Simple
+---  Given_table_is
+[ATest {anInt = 1 aString = something aDouble = 1.2 } ]
+---  Given_table_is
+[ATest {anInt = 1 aString = something aDouble = 1.2 } ]

@@ -1,0 +1,55 @@
+package gherkinexecutor.Feature_Collator;
+import java.util.*;
+import geepaw.*;
+ import static org.junit.jupiter.api.Assertions.*;
+import java.util.List;
+
+class Feature_Collator_glue {
+
+
+    void Star_Outcomes(List<DomainTermValues> values ) {
+        System.out.println("---  " + "Star_Outcomes");
+        for (DomainTermValues value : values){
+           System.out.println(value);
+                try {
+                DomainTermValuesInternal i = value.toDomainTermValuesInternal();
+                  System.out.println(i);
+                      }
+                     catch(Exception e){
+                         System.err.println("Argument Error " + value.toString() + DomainTermValuesInternal.toDataTypeString());
+                         }
+              }
+        fail("Must implement");
+    }
+
+    void Given_log_contains(List<LogResult> values ) {
+        System.out.println("---  " + "Given_log_contains");
+        for (LogResult value : values){
+           System.out.println(value);
+                try {
+                LogResultInternal i = value.toLogResultInternal();
+                  System.out.println(i);
+                      }
+                     catch(Exception e){
+                         System.err.println("Argument Error " + value.toString() + LogResultInternal.toDataTypeString());
+                         }
+              }
+        fail("Must implement");
+    }
+
+    void When_end_run_results_are(List<TestResultIn> values ) {
+        System.out.println("---  " + "When_end_run_results_are");
+        for (TestResultIn value : values){
+           System.out.println(value);
+                try {
+                TestResultInInternal i = value.toTestResultInInternal();
+                  System.out.println(i);
+                      }
+                     catch(Exception e){
+                         System.err.println("Argument Error " + value.toString() + TestResultInInternal.toDataTypeString());
+                         }
+              }
+        fail("Must implement");
+    }
+
+    }
