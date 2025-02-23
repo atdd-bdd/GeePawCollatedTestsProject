@@ -9,6 +9,8 @@ public class CollatedTests {
     // Then no need for sequenceNumber
     // But sequenceNumber could be replaced by TimeStamp
     // if that were useful.
+
+    // Should the constructor for TestResult do the sequenceNumber assignment?
     public void add(String testname, TestStatus status) {
         if (!map.containsKey(testname)) {
             map.put(testname, new TestResult(testname, status, true, SequenceNumber.next()));
