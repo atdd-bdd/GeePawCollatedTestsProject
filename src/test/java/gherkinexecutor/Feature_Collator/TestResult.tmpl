@@ -1,0 +1,47 @@
+package gherkinexecutor.Feature_Collator;
+import java.util.*;
+import geepaw.*;
+class TestResult{
+     String name;
+     TestStatus testStatus;
+     boolean is_New;
+     
+    public static String toDataTypeString() {
+        return "TestResult {"
+        +"String " 
+        +"TestStatus " 
+        +"boolean " 
+            + "} "; }  
+    TestResultString toTestResultString() {
+        return new TestResultString(
+        name
+        ,testStatus.toString()
+        ,String.valueOf(is_New)
+        ); }
+    public TestResult(
+        String name
+        ,TestStatus testStatus
+        ,boolean is_New
+        )  {
+        this.name = name;
+        this.testStatus = testStatus;
+        this.is_New = is_New;
+        }
+    @Override
+    public boolean equals (Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        TestResult _TestResult = (TestResult) o;
+         return 
+                ( _TestResult.name.equals(this.name))
+                 && ( _TestResult.testStatus.equals(this.testStatus))
+                 && ( _TestResult.is_New == (this.is_New))
+             ;  }
+    @Override
+    public String toString() {
+        return "TestResult {"
+        +"name = " + name + " "
+        +"testStatus = " + testStatus + " "
+        +"is_New = " + is_New + " "
+            + "} "; }  
+    }
