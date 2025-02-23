@@ -7,17 +7,18 @@ import geepaw.TestStatus;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
 class Feature_Collator_glue {
 
     CollatedTests ct = new CollatedTests();
 
-    void Star_Outcomes(List<DomainTermValues> values) {
+    void Star_Outcomes(List<ValueValid> values) {
         System.out.println("---  " + "Star_Outcomes");
-        for (DomainTermValues value : values) {
+        for (ValueValid value : values) {
             try {
-                DomainTermValuesInternal i = value.toDomainTermValuesInternal();
+                ValueValidInternal i = value.toValueValidInternal();
                 TestStatus.valueOf(i.value);
             } catch (Exception e) {
                 fail(" Invalid value " + value.value);
@@ -43,33 +44,28 @@ class Feature_Collator_glue {
     void When_end_run_results_are(List<TestResultIn> values) {
         System.out.println("---  " + "When_end_run_results_are");
         List<TestResult> results = ct.endRun();
+        System.out.println(" **** Actuals ");
         System.out.println(results);
+        List<TestResultInInternal> actuals = new ArrayList<>();
+        for (TestResult element : results) {
+            actuals.add(new TestResultInInternal(element.name, element.testStatus, element.isNew));
+        }
+        System.out.println("Actuals converted ");
+        System.out.println(actuals);
+        System.out.println("**** Expected ****");
+        System.out.println(values);
+        List<TestResultInInternal> expected = new ArrayList<>();
         for (TestResultIn value : values) {
-            System.out.println(value);
-        }
-        boolean compare = compareLists(results, values);
-        if (!compare) fail("Lists do not compare");
-    }
-
-    private boolean compareLists(List<TestResult> results, List<TestResultIn> expected) {
-        // Compare the lists element by element
-        if (results.size() == expected.size()) {
-            for (int i = 0; i < expected.size(); i++) {
-                TestResult element = results.get(i);
-                TestResultInInternal actualIn = new TestResultInInternal(element.name, element.testStatus, element.isNew);
-                TestResultIn actual = actualIn.toTestResultIn();
-                TestResultIn expect = expected.get(i);
-                if (!expect.equals(actual)) {
-                    System.err.println(" For index in list " + i + expect + " " + actualIn);
-                    return false;
-                }
-
+            try {
+                expected.add(value.toTestResultInInternal());
+            } catch (Exception e) {
+                System.err.println("Invalid value in " + value + " " + TestResultInInternal.toDataTypeString());
             }
-        } else {
-            System.err.println("Lists are of different sizes.");
-            return false;
         }
-        return true;
+        System.out.println("Expected converted");
+        System.out.println(expected);
+        assertEquals(expected.size(), actuals.size(), "Size of lists");
+        assertEquals(expected, actuals);
     }
-}
 
+}

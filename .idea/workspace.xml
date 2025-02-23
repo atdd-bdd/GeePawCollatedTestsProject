@@ -5,26 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f327495f-f0fd-4087-b879-788f478567c2" name="Changes" comment="The program appears to be working">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gradlew" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gradlew.bat" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/settings.gradle.kts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/geepaw/CollatedTests.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/geepaw/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/geepaw/SequenceNumber.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/geepaw/TestResult.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/geepaw/TestStatus.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/gherkinexecutor/Translate.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/collated_tests.feature" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/simple_test.feature" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/geepaw/TestRandomStuff.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/geepaw/CollatedTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/geepaw/CollatedTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/geepaw/TestResult.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/geepaw/TestResult.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/gherkinexecutor/Translate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gherkinexecutor/Translate.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/collated_tests.feature" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/collated_tests.feature" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/gherkinexecutor/Feature_Collator/DomainTermValuesInternal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/gherkinexecutor/Feature_Collator/DomainTermValuesInternal.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/gherkinexecutor/Feature_Collator/Feature_Collator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/gherkinexecutor/Feature_Collator/Feature_Collator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/gherkinexecutor/Feature_Collator/Feature_Collator_glue.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/gherkinexecutor/Feature_Collator/Feature_Collator_glue.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/gherkinexecutor/Feature_Collator/Feature_Collator_glue.tmpl" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/gherkinexecutor/Feature_Collator/Feature_Collator_glue.tmpl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/gherkinexecutor/Feature_Collator/LogResultInternal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/gherkinexecutor/Feature_Collator/LogResultInternal.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/gherkinexecutor/Feature_Collator/TestResultInInternal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/gherkinexecutor/Feature_Collator/TestResultInInternal.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/gherkinexecutor/Feature_Simple_Test/ATestInternal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/gherkinexecutor/Feature_Simple_Test/ATestInternal.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -81,6 +74,19 @@
     </key>
   </component>
   <component name="RunManager" selected="Gradle.Feature_Collator">
+    <configuration name="TestRandomStuff" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="geepaw.TestRandomStuff" />
+      <module name="GeePawCollatedTestsProject.main" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="geepaw.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Translate (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="gherkinexecutor.Translate" />
       <module name="GeePawCollatedTestsProject.main" />
@@ -156,6 +162,7 @@
       <method v="2" />
     </configuration>
     <list>
+      <item itemvalue="Application.TestRandomStuff" />
       <item itemvalue="Application.Translate (1)" />
       <item itemvalue="Application.Translate" />
       <item itemvalue="Gradle.Feature_Collator" />
@@ -164,6 +171,7 @@
     <recent_temporary>
       <list>
         <item itemvalue="Gradle.Feature_Collator" />
+        <item itemvalue="Application.TestRandomStuff" />
         <item itemvalue="Gradle.Feature_Simple_Test" />
         <item itemvalue="Application.Translate (1)" />
         <item itemvalue="Application.Translate" />

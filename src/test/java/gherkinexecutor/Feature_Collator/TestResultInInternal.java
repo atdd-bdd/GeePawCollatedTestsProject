@@ -28,6 +28,16 @@ class TestResultInInternal{
         this.is_New = is_New;
         }
     @Override
+    public boolean equals (Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        TestResultInInternal _TestResultInInternal = (TestResultInInternal) o;
+         return 
+                ( _TestResultInInternal.name.equals(this.name))
+                 && ( _TestResultInInternal.testStatus.equals(this.testStatus))
+                 && ( _TestResultInInternal.is_New == (this.is_New))
+             ;  }
+    @Override
     public String toString() {
         return "TestResultInInternal {"
         +"name = " + name + " "

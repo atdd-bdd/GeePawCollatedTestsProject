@@ -2,7 +2,7 @@ Feature: Collator
 
 
 Scenario: Domain Term TestStatus
-* Outcomes     # ListOfObject DomainTermValues
+* Outcomes     # ListOfObject ValueValid
 | Value    | Notes                          |
 | Pass     |                                |
 | Fail     |                                |
@@ -34,20 +34,23 @@ When end run results are # ListOfObject TestResultIn
 | TestA  | Pass        | true    |
 | TestB  | Fail        | true    |
 Given log contains # ListOfObject LogResult 
-| Name   | TestStatus  | Notes                                    |
-| TestC  | Pass        | Should show up last, since a new test    |
-| TestA  | Fail        | Should switch to Fail, but not new test  |
+| Name   | TestStatus  | 
+| TestC  | Pass        | 
+| TestA  | Fail        | 
 When end run results are  # ListOfObject TestResultIn 
 | Name   | TestStatus  | Is New  |
-| TestA  | Fail        | false   |
-| TestB  | NotRun      | false   |
-| TestC  | Pass        | true    |
+| TestA  | Fail        | false   |   # Should now be fail as reported in new log
+| TestB  | NotRun      | false   |   # Should show up NotRun, since not in log
+| TestC  | Pass        | true    |   # Should show up last, even though first in log
 
-Data DomainTermValues 
+Data ValueValid
 | Name   | Default  | Datatype  | Notes     |
-| Value  |          | String    |           |
+| Value  |          | String    |           |   # Some other commetn
 | Valid  | true     | boolean   |           |
 | Notes  |          | String    | comments  |
+
+
+
 
 Import 
 | Datatype    | ConversionMethod       |

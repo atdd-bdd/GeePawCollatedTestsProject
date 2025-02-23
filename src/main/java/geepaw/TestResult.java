@@ -19,6 +19,16 @@ package geepaw;
             this.isNew = isNew;
             this.sequenceNumber = sequenceNumber;
         }
+        public TestResult(
+                String name
+                , TestStatus testStatus
+                , boolean isNew
+        ){
+            this.name = name;
+            this.testStatus = testStatus;
+            this.isNew = isNew;
+            this.sequenceNumber = 0;
+        }
 
         @Override
         public String toString() {

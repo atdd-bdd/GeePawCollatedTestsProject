@@ -14,7 +14,7 @@ public class CollatedTests {
             map.put(testname, new TestResult(testname, status, true, SequenceNumber.next()));
         } else {
             TestResult current = map.get(testname);
-            current = new TestResult(current.name, current.testStatus, false, current.sequenceNumber);
+            map.put(testname, new TestResult(current.name, status, false, current.sequenceNumber));
         }
     }
 
@@ -26,6 +26,9 @@ public class CollatedTests {
     }
 
     void setupForNextRun() {
-        map.forEach((key, value) -> map.put(key, new TestResult(value.name, value.testStatus, false, value.sequenceNumber)));
+        for (String key : map.keySet()){
+            TestResult value = map.get(key);
+            map.put(key, new TestResult(value.name, TestStatus.NotRun, false, value.sequenceNumber));
+        }
     }
 }

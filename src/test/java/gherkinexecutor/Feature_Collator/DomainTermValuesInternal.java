@@ -28,6 +28,16 @@ class DomainTermValuesInternal{
         this.notes = notes;
         }
     @Override
+    public boolean equals (Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        DomainTermValuesInternal _DomainTermValuesInternal = (DomainTermValuesInternal) o;
+         return 
+                ( _DomainTermValuesInternal.value.equals(this.value))
+                 && ( _DomainTermValuesInternal.valid == (this.valid))
+                 && ( _DomainTermValuesInternal.notes == (this.notes))
+             ;  }
+    @Override
     public String toString() {
         return "DomainTermValuesInternal {"
         +"value = " + value + " "

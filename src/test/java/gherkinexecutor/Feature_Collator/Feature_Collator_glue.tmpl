@@ -7,16 +7,16 @@ import java.util.List;
 class Feature_Collator_glue {
 
 
-    void Star_Outcomes(List<DomainTermValues> values ) {
+    void Star_Outcomes(List<ValueValid> values ) {
         System.out.println("---  " + "Star_Outcomes");
-        for (DomainTermValues value : values){
+        for (ValueValid value : values){
            System.out.println(value);
                 try {
-                DomainTermValuesInternal i = value.toDomainTermValuesInternal();
+                ValueValidInternal i = value.toValueValidInternal();
                   System.out.println(i);
                       }
                      catch(Exception e){
-                         System.err.println("Argument Error " + value.toString() + DomainTermValuesInternal.toDataTypeString());
+                         System.err.println("Argument Error " + value.toString() + ValueValidInternal.toDataTypeString());
                          }
               }
         fail("Must implement");

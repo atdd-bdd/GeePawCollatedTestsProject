@@ -10,24 +10,24 @@ class Feature_Collator{
     void test_Scenario_Domain_Term_TestStatus(){
          Feature_Collator_glue feature_Collator_glue_object = new Feature_Collator_glue();
 
-        List<DomainTermValues> objectList1 = List.of(
-             new DomainTermValues.Builder()
+        List<ValueValid> objectList1 = List.of(
+             new ValueValid.Builder()
                 .value("Pass")
                 .notes("")
                 .build()
-            , new DomainTermValues.Builder()
+            , new ValueValid.Builder()
                 .value("Fail")
                 .notes("")
                 .build()
-            , new DomainTermValues.Builder()
+            , new ValueValid.Builder()
                 .value("Disable")
                 .notes("")
                 .build()
-            , new DomainTermValues.Builder()
+            , new ValueValid.Builder()
                 .value("Abort")
                 .notes("Status has not been seen")
                 .build()
-            , new DomainTermValues.Builder()
+            , new ValueValid.Builder()
                 .value("NotRun")
                 .notes("test was not run in prior run")
                 .build()
@@ -68,12 +68,10 @@ class Feature_Collator{
              new LogResult.Builder()
                 .name("TestC")
                 .testStatus("Pass")
-                .notes("Should show up last, since a new test")
                 .build()
             , new LogResult.Builder()
                 .name("TestA")
                 .testStatus("Fail")
-                .notes("Should switch to Fail, but not new test")
                 .build()
             );
         feature_Collator_glue_object.Given_log_contains(objectList3);

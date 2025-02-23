@@ -8,7 +8,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-enum MakeDataValue {Name, Value}
+
 public class Translate {
     private final Map<String, String> scenarios = new HashMap<>(); // used to check if duplicate scenario names
     private final Map<String, String> glueFunctions = new HashMap<>(); // used to make sure only one glue implementation
@@ -172,6 +172,7 @@ public class Translate {
                 if (pass != 1)
                     break;
                 importConstruct.actOnImport(words);
+                break;
             case "Define":
                 if (pass != 1)
                     break;
@@ -218,7 +219,7 @@ public class Translate {
         try {
             boolean result = new File(directoryName).mkdirs();
             if (!result)
-                error("Error in creating files " + directoryName);
+                trace("Possible error in creating directory " + directoryName);
             testFile = new FileWriter(testPathname, false);
             templateConstruct.glueTemplateFile = new FileWriter(templateFilename, false);
         } catch (IOException e) {
@@ -380,8 +381,11 @@ public class Translate {
     private List<String> readTable() {
         List<String> retValue = new ArrayList<>();
         String line = dataIn.peek().trim();
+        line = line.split("#")[0].trim();
         while (!line.isEmpty() && (line.charAt(0) == '|' || line.charAt(0) == '#')) {
             line = dataIn.next().trim();
+            line = line.split("#")[0].trim();
+            System.out.println("Line is " + line);
             if (line.charAt(0) == '|' && line.endsWith("|")) {
                 retValue.add(line);
             } else {
@@ -694,8 +698,8 @@ public class Translate {
             if (comment.size() > 0 && !comment.get(0).isEmpty()) option = comment.get(0);
             switch (option) {
                 case "ListOfList":
-                        tableToListOfList(table, fullName);
-                        break;
+                    tableToListOfList(table, fullName);
+                    break;
                 case "String":
                 case "string":
                     tableToString(table, fullName);
@@ -741,8 +745,9 @@ public class Translate {
             templateConstruct.makeFunctionTemplate("String", fullName, false, "");
         }
 
-        private void convertBarLineToList(String line, String commaIn) {
-
+        private void convertBarLineToList(String lineIn, String commaIn) {
+            String line = lineIn.split("#")[0].trim();
+            System.out.println("Line is " + line);
             testPrint("           " + commaIn + "List.of(");
             List<String> elements = parseLine(line);
             String comma = "";
@@ -959,15 +964,20 @@ public class Translate {
         }
 
 
-
         private void actOnData(List<String> words) {
             String internalClassName;
             if (words.size() < 2) {
                 error("Need to specify data class name");
             }
             String className = words.get(1);
-            if (words.size() > 2) internalClassName = words.get(2);
-            else internalClassName = className + "Internal";
+            boolean providedOtherClassName;
+            if (words.size() > 2) {
+                internalClassName = words.get(2);
+                providedOtherClassName = true;
+            } else {
+                providedOtherClassName = false;
+                internalClassName = className + "Internal";
+            }
             Pair<String, List<String>> follow = lookForFollow();
             String followType = follow.getFirst();
             List<String> table = follow.getSecond();
@@ -982,7 +992,7 @@ public class Translate {
             trace("Creating class for " + className);
             dataNames.put(className, "");
             // Put each in a new file
-            startDataFile(className);
+            startDataFile(className, false);
 
             dataPrintLn("package " + packagePath + ";");
             for (String line : Configuration.linesToAddForDataAndGlue) {
@@ -1004,8 +1014,9 @@ public class Translate {
             }
             dataPrintLn("    }");
             endDataFile();
+
             if (doInternal) {
-                createInternalClass(internalClassName, className, variables);
+                createInternalClass(internalClassName, className, variables, providedOtherClassName);
             }
         }
 
@@ -1017,9 +1028,12 @@ public class Translate {
             }
         }
 
-        private void startDataFile(String className) {
+        private void startDataFile(String className, boolean createTmpl) {
+            String extension = Configuration.dataDefinitionFileExtension;
+            if (createTmpl)
+                extension = "tmpl";
             String dataDefinitionPathname = Configuration.testSubDirectory + featureName + "/" + className
-                    + "." + Configuration.dataDefinitionFileExtension;
+                    + "." + extension;
             printFlow("Printing data on " + dataDefinitionPathname);
             try {
                 dataDefinitionFile = new FileWriter(dataDefinitionPathname, false);
@@ -1120,17 +1134,6 @@ public class Translate {
                 dataPrintLn("                return ( " + variableName + "." + variable.name + ".equals(this." + variable.name + "));");
             }
             dataPrintLn("             return true;  }");
-//        @Override
-//        public boolean equals(Object o) {
-//            if (this == o) return true;
-//            if (o == null || getClass() != o.getClass()) return false;
-//            ATest aTest = (ATest) o;
-//            return
-            //          if (!aTest.anInt.equals(Configuration. ..   && !
-//                        if (!aTest.anInt.equals(anInt) return false;
-//                            aTest.equals(aString) &&
-//                            aTest.equals(aDouble);
-//
         }
 
         private void createConversionMethod(String internalClassName, List<DataValues> variables) {
@@ -1138,7 +1141,7 @@ public class Translate {
             dataPrintLn("        return new " + internalClassName + "(");
             String comma = "";
             for (DataValues variable : variables) {
-                String initializer = makeValueFromString(variable, MakeDataValue.Name);
+                String initializer = makeValueFromString(variable, true);
                 dataPrintLn("        " + comma + " " + initializer);
                 comma = ",";
             }
@@ -1146,12 +1149,13 @@ public class Translate {
 
         }
 
+
         @SuppressWarnings("SameParameterValue")
-        private String makeValueFromString(DataValues variable, MakeDataValue which) {
-            String value = "NOT DETERMINED";
-            if (which == MakeDataValue.Name)
+        private String makeValueFromString(DataValues variable, boolean makeNameValue) {
+            String value;
+            if (makeNameValue)
                 value = makeName(variable.name);
-            else if (which == MakeDataValue.Value)
+            else
                 value = quoteIt(variable.defaultVal);
             switch (variable.dataType) {
                 case "String":
@@ -1253,7 +1257,8 @@ public class Translate {
             }
         }
 
-        private void createInternalClass(String className, String otherClassName, List<DataValues> variables) {
+        private void createInternalClass(String className, String otherClassName, List<DataValues> variables,
+                                         boolean providedClassName) {
             String classNameInternal = className;
             if (dataNames.containsKey(classNameInternal)) {
                 error("Data name is duplicated, has been renamed " + classNameInternal);
@@ -1261,7 +1266,7 @@ public class Translate {
             }
             trace("Creating internal class for " + classNameInternal);
             dataNames.put(classNameInternal, "");
-            startDataFile(className);
+            startDataFile(className, providedClassName);
             dataPrintLn("package " + packagePath + ";");
             for (String line : Configuration.linesToAddForDataAndGlue) {
                 dataPrintLn(line);
@@ -1274,11 +1279,46 @@ public class Translate {
             createDataTypeToStringObject(className, variables);
             createToStringObject(otherClassName, variables);
             createInternalConstructor(variables, className);
+            createInternalEqualsMethod(variables, className);
             createToStringMethod(variables, className);
 
             dataPrintLn("    }"); // end class
             endDataFile();
         }
+
+        private void createInternalEqualsMethod(List<DataValues> variables, String className) {
+            dataPrintLn("    @Override");
+            dataPrintLn("    public boolean equals (Object o) {");
+            dataPrintLn("        if (this == o) return true;");
+            dataPrintLn("        if (o == null || getClass() != o.getClass()) return false;");
+
+            String variableName = "_" + className;
+            dataPrintLn("        " + className + " " + variableName + " = (" + className + ") o;");
+            dataPrintLn("         return ");
+            String and = "";
+            String comparison = ".equals";
+            for (DataValues variable : variables) {
+                if (primitiveDataType(variable))
+                    comparison = " == ";
+                dataPrintLn("                " + and + "( " + variableName + "." + variable.name + comparison + "(this." + variable.name + "))");
+                and = " && ";
+            }
+            dataPrintLn("             ;  }");
+
+        }
+
+        private boolean primitiveDataType(DataValues variable) {
+            return (variable.dataType.equals("boolean"))
+                    || (variable.dataType.equals("char"))
+                    || (variable.dataType.equals("int"))
+                    || (variable.dataType.equals("float"))
+                    || (variable.dataType.equals("double"))
+                    || (variable.dataType.equals("long"))
+                    || (variable.dataType.equals("byte"))
+                    || (variable.dataType.equals("short"));
+
+        }
+
 
         private void createDataTypeToStringObject(String className, List<DataValues> variables) {
             dataPrintLn("    public static String toDataTypeString() {");
@@ -1296,7 +1336,7 @@ public class Translate {
             dataPrintLn("        return new " + otherClassName + "(");
             String comma = "";
             for (DataValues variable : variables) {
-                String method = makeValueToString(variable, MakeDataValue.Name);
+                String method = makeValueToString(variable, true);
                 dataPrintLn("        " + comma + method);
                 comma = ",";
             }
@@ -1304,11 +1344,11 @@ public class Translate {
         }
 
         @SuppressWarnings("SameParameterValue")
-        private String makeValueToString(DataValues variable, MakeDataValue which) {
-            String value = "NOT DETERMINED";
-            if (which == MakeDataValue.Name)
+        private String makeValueToString(DataValues variable, boolean makeNameValue) {
+            String value;
+            if (makeNameValue)
                 value = makeName(variable.name);
-            else if (which == MakeDataValue.Value)
+            else
                 value = quoteIt(variable.defaultVal);
             switch (variable.dataType) {
                 case "String":
