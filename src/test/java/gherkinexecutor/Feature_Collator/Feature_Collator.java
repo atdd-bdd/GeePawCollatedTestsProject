@@ -42,10 +42,12 @@ class Feature_Collator{
              new LogResult.Builder()
                 .name("TestA")
                 .testStatus("Pass")
+                .notes("isNew will be true")
                 .build()
             , new LogResult.Builder()
                 .name("TestB")
                 .testStatus("Fail")
+                .notes("isNew will be true")
                 .build()
             );
         feature_Collator_glue_object.Given_log_contains(objectList1);
@@ -68,10 +70,12 @@ class Feature_Collator{
              new LogResult.Builder()
                 .name("TestC")
                 .testStatus("Pass")
+                .notes("new test, will be last in report")
                 .build()
             , new LogResult.Builder()
                 .name("TestA")
                 .testStatus("Fail")
+                .notes("old test, status changed")
                 .build()
             );
         feature_Collator_glue_object.Given_log_contains(objectList3);

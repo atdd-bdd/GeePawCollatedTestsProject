@@ -17,12 +17,16 @@ public class CollatedTests {
         } else {
             TestResult current = map.get(testname);
             current.testStatus = status;
-            current.isNew = false;
         }
     }
 
     public List<TestResult> endRun() {
-        List<TestResult> list = new ArrayList<>(map.values());
+        // If TestResult had clone() method, this could be shorter
+        List<TestResult> list = new ArrayList<>();
+        for (Map.Entry<String, TestResult> entry : map.entrySet()){
+            TestResult current = entry.getValue();
+            list.add(new TestResult(current.name, current.testStatus, current.isNew, current.sequenceNumber));
+             }
         list.sort(Comparator.comparingLong(testResult -> testResult.sequenceNumber));
         setupForNextRun();
         return list;
@@ -31,9 +35,8 @@ public class CollatedTests {
     void setupForNextRun() {
         for (String key : map.keySet()){
             TestResult value = map.get(key);
-            // This changes the value in the list that is returned.
-          //  value.testStatus = TestStatus.NotRun;
-            map.put(key, new TestResult(value.name, TestStatus.NotRun, false, value.sequenceNumber));
+            value.testStatus = TestStatus.NotRun;
+            value.isNew = false;
         }
     }
 }

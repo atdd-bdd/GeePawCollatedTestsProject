@@ -26,22 +26,23 @@ Data TestResultIn
 
 Scenario:   Two Runs 
 Given log contains # ListOfObject LogResult 
-| Name | TestStatus | 
-| TestA  | Pass     |
-| TestB  | Fail     |
+| Name   | TestStatus  | Notes               |
+| TestA  | Pass        | isNew will be true  |
+| TestB  | Fail        | isNew will be true  |
 When end run results are # ListOfObject TestResultIn
 | Name   | TestStatus  | Is New  |
 | TestA  | Pass        | true    |
 | TestB  | Fail        | true    |
 Given log contains # ListOfObject LogResult 
-| Name   | TestStatus  | 
-| TestC  | Pass        | 
-| TestA  | Fail        | 
+| Name   | TestStatus  | Notes                             |
+| TestC  | Pass        | new test, will be last in report  |
+| TestA  | Fail        | old test, status changed          |
+# TestB was not run
 When end run results are  # ListOfObject TestResultIn 
 | Name   | TestStatus  | Is New  |
-| TestA  | Fail        | false   |   # Should now be fail as reported in new log
-| TestB  | NotRun      | false   |   # Should show up NotRun, since not in log
-| TestC  | Pass        | true    |   # Should show up last, even though first in log
+| TestA  | Fail        | false   |   
+| TestB  | NotRun      | false   |   
+| TestC  | Pass        | true    |   
 
 Data ValueValid
 | Name   | Default  | Datatype  | Notes     |
