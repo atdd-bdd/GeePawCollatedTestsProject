@@ -69,7 +69,7 @@ class ValueValid{
         +"valid = " + valid + " "
         +"notes = " + notes + " "
             + "} "; }  
-    ValueValidInternal toValueValidInternal() throws Exception {
+    ValueValidInternal toValueValidInternal() throws IllegalArgumentException {
         return new ValueValidInternal(
          value
         , Boolean.parseBoolean(valid)

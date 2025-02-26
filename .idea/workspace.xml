@@ -4,14 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f327495f-f0fd-4087-b879-788f478567c2" name="Changes" comment="Doing some variations on Implementation">
-      <change afterPath="$PROJECT_DIR$/src/main/java/gherkinexecutor/Configuration.java" afterDir="false" />
+    <list default="true" id="f327495f-f0fd-4087-b879-788f478567c2" name="Changes" comment="altered new object creation to the report, rather than in setupForNextRunI)">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/geepaw/CollatedTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/geepaw/CollatedTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/geepaw/TestResult.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/geepaw/TestResult.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/gherkinexecutor/Translate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gherkinexecutor/Translate.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/collated_tests.feature" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/collated_tests.feature" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/gherkinexecutor/Feature_Collator/Feature_Collator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/gherkinexecutor/Feature_Collator/Feature_Collator.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/gherkinexecutor/Feature_Collator/Feature_Collator_glue.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/gherkinexecutor/Feature_Collator/Feature_Collator_glue.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/gherkinexecutor/Feature_Collator/Feature_Collator_glue.tmpl" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/gherkinexecutor/Feature_Collator/Feature_Collator_glue.tmpl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/gherkinexecutor/Feature_Collator/LogResult.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/gherkinexecutor/Feature_Collator/LogResult.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/gherkinexecutor/Feature_Collator/TestResultIn.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/gherkinexecutor/Feature_Collator/TestResultIn.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/gherkinexecutor/Feature_Collator/TestResultString.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/gherkinexecutor/Feature_Collator/TestResultString.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/gherkinexecutor/Feature_Collator/ValueValid.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/gherkinexecutor/Feature_Collator/ValueValid.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/gherkinexecutor/Feature_Simple_Test/ATest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/gherkinexecutor/Feature_Simple_Test/ATest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/gherkinexecutor/Feature_Simple_Test/Feature_Simple_Test_glue.tmpl" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/gherkinexecutor/Feature_Simple_Test/Feature_Simple_Test_glue.tmpl" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -209,14 +214,22 @@
       <option name="project" value="LOCAL" />
       <updated>1740322366137</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="altered new object creation to the report, rather than in setupForNextRunI)">
+      <created>1740459678830</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1740459678831</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="The program appears to be working" />
     <MESSAGE value="Changed feature file to use ValueValid.  Added Test for # after table entries" />
     <MESSAGE value="Doing some variations on Implementation" />
-    <option name="LAST_COMMIT_MESSAGE" value="Doing some variations on Implementation" />
+    <MESSAGE value="altered new object creation to the report, rather than in setupForNextRunI)" />
+    <option name="LAST_COMMIT_MESSAGE" value="altered new object creation to the report, rather than in setupForNextRunI)" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand>

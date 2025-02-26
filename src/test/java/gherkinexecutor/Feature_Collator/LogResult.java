@@ -69,7 +69,7 @@ class LogResult{
         +"testStatus = " + testStatus + " "
         +"notes = " + notes + " "
             + "} "; }  
-    LogResultInternal toLogResultInternal() throws Exception {
+    LogResultInternal toLogResultInternal() throws IllegalArgumentException {
         return new LogResultInternal(
          name
         , TestStatus.valueOf(testStatus)

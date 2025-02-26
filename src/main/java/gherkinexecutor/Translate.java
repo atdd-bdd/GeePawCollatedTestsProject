@@ -897,7 +897,7 @@ public class Translate {
                         templatePrint("                " + name + " i = value.to" + name + "();");
                         templatePrint("                  System.out.println(i);");
                         templatePrint("                      }");
-                        templatePrint("                     catch(Exception e){");
+                        templatePrint("                     catch(IllegalArgumentException e){");
                         templatePrint("                         System.err.println(\"Argument Error \" + value.toString() + " + name + ".toDataTypeString());");
                         templatePrint("                         }");
                     }
@@ -923,6 +923,8 @@ public class Translate {
             }
             templatePrint("");
             templatePrint("class " + glueClass + " {");
+            templatePrint("    final String DNCString = "
+            + "\"" + Configuration.doNotCompare + "\"");
             templatePrint(logIt());
 
             templatePrint("");
@@ -943,7 +945,7 @@ public class Translate {
     class DataConstruct {
         //        private final String dataDefinitionFilename = basePath + "DataDefinition" + ".tmp";
         private FileWriter dataDefinitionFile;
-        final String throwString = "throws Exception ";
+        final String throwString = "throws IllegalArgumentException ";
 
         public class DataValues {
             public final String name;

@@ -69,7 +69,7 @@ class TestResultIn{
         +"testStatus = " + testStatus + " "
         +"is_New = " + is_New + " "
             + "} "; }  
-    TestResultInInternal toTestResultInInternal() throws Exception {
+    TestResultInInternal toTestResultInInternal() throws IllegalArgumentException {
         return new TestResultInInternal(
          name
         , TestStatus.valueOf(testStatus)

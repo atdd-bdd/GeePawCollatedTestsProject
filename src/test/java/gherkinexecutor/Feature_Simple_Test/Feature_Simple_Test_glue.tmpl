@@ -5,6 +5,7 @@ import geepaw.*;
 import java.util.List;
 
 class Feature_Simple_Test_glue {
+    final String DNCString = "?DNC?"
 
 
     void Given_table_is(List<ATest> values ) {
@@ -15,7 +16,7 @@ class Feature_Simple_Test_glue {
                 ATestInternal i = value.toATestInternal();
                   System.out.println(i);
                       }
-                     catch(Exception e){
+                     catch(IllegalArgumentException e){
                          System.err.println("Argument Error " + value.toString() + ATestInternal.toDataTypeString());
                          }
               }

@@ -15,48 +15,31 @@ class Feature_Collator_glue {
     CollatedTests ct = new CollatedTests();
 
     void Star_Outcomes(List<ValueValid> values) {
-        System.out.println("---  " + "Star_Outcomes");
         for (ValueValid value : values) {
             try {
                 ValueValidInternal i = value.toValueValidInternal();
                 TestStatus.valueOf(i.value);
-            } catch (Exception e) {
+            } catch (IllegalArgumentException e) {
                 fail(" Invalid value " + value.value);
             }
         }
     }
 
     void Given_log_contains(List<LogResult> values) {
-        System.out.println("---  " + "Given_log_contains");
         for (LogResult value : values) {
-            System.out.println(value);
-            try {
                 LogResultInternal i = value.toLogResultInternal();
                 ct.add(i.name, i.testStatus);
-            } catch (Exception e) {
-                System.err.println("Argument Error " + value.toString() + LogResultInternal.toDataTypeString());
-            }
         }
-
     }
 
     void When_end_run_results_are(List<TestResultIn> values) {
-        System.out.println("---  " + "When_end_run_results_are");
         List<TestResult> results = ct.endRun();
         List<TestResultInInternal> actuals = new ArrayList<>();
-        for (TestResult element : results) {
-            actuals.add(new TestResultInInternal(element.name, element.testStatus, element.isNew));
-        }
-        System.out.println("**** Expected ****");
-        System.out.println(values);
+        results.forEach(element -> actuals.add(new TestResultInInternal(element.name,
+                element.testStatus, element.isNew)));
         List<TestResultInInternal> expected = new ArrayList<>();
-        for (TestResultIn value : values) {
-            try {
-                expected.add(value.toTestResultInInternal());
-            } catch (Exception e) {
-                System.err.println("Invalid value in " + value + " " + TestResultInInternal.toDataTypeString());
-            }
-        }
+        values.forEach( value ->
+                expected.add(value.toTestResultInInternal()));
         assertEquals(expected.size(), actuals.size(), "Size of lists");
         assertEquals(expected, actuals);
     }

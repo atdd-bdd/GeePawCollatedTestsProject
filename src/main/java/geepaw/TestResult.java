@@ -19,23 +19,28 @@ package geepaw;
             this.isNew = isNew;
             this.sequenceNumber = sequenceNumber;
         }
-        public TestResult(
-                String name
-                , TestStatus testStatus
-                , boolean isNew
-        ){
-            this.name = name;
-            this.testStatus = testStatus;
-            this.isNew = isNew;
-            this.sequenceNumber = 0;
-        }
+//        public TestResult(
+//                String name
+//                , TestStatus testStatus
+//                , boolean isNew
+//                , long sequenceNumber
+//        ){
+//            this.name = name;
+//            this.testStatus = testStatus;
+//            this.isNew = isNew;
+//            this.sequenceNumber = sequenceNumber;
+//        }
 
         @Override
         public String toString() {
             return "TestResult{"
                     + "name = " + name + " "
                     + "testStatus = " + testStatus + " "
-                    + "is_New = " + isNew + " "
-                    + "} ";
+                    + "isNew = " + isNew + " "
+                    + "sequenceNumber = " + sequenceNumber+ " "                    + "} ";
+        }
+
+        public TestResult copy() {
+            return new TestResult(name, testStatus, isNew, sequenceNumber);
         }
     }

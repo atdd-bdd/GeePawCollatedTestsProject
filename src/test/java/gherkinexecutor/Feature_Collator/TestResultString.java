@@ -69,10 +69,5 @@ class TestResultString{
         +"testStatus = " + testStatus + " "
         +"is_New = " + is_New + " "
             + "} "; }  
-    TestResult toTestResult() throws Exception {
-        return new TestResult(
-         name
-        , TestStatus.valueOf(testStatus)
-        , Boolean.parseBoolean(is_New)
-        ); }
+
     }

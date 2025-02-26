@@ -5,6 +5,7 @@ import geepaw.*;
 import java.util.List;
 
 class Feature_Collator_glue {
+    final String DNCString = "?DNC?"
 
 
     void Star_Outcomes(List<ValueValid> values ) {
@@ -15,7 +16,7 @@ class Feature_Collator_glue {
                 ValueValidInternal i = value.toValueValidInternal();
                   System.out.println(i);
                       }
-                     catch(Exception e){
+                     catch(IllegalArgumentException e){
                          System.err.println("Argument Error " + value.toString() + ValueValidInternal.toDataTypeString());
                          }
               }
@@ -30,7 +31,7 @@ class Feature_Collator_glue {
                 LogResultInternal i = value.toLogResultInternal();
                   System.out.println(i);
                       }
-                     catch(Exception e){
+                     catch(IllegalArgumentException e){
                          System.err.println("Argument Error " + value.toString() + LogResultInternal.toDataTypeString());
                          }
               }
@@ -45,7 +46,7 @@ class Feature_Collator_glue {
                 TestResultInInternal i = value.toTestResultInInternal();
                   System.out.println(i);
                       }
-                     catch(Exception e){
+                     catch(IllegalArgumentException e){
                          System.err.println("Argument Error " + value.toString() + TestResultInInternal.toDataTypeString());
                          }
               }
